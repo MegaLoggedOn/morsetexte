@@ -1,0 +1,24 @@
+{
+    "name": "MorseTexte",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "radio-broadcast": "*",
+        "i2cLCD1602": "github:makecode-extensions/i2clcd1602#v1.5.0",
+        "lcd1602": "github:xuefengedu/pxt-lcd1602_cn#0ecac824f43d544bf553459adb2696b5f0d3d8d2"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}

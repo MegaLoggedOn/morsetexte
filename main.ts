@@ -149,15 +149,6 @@ input.onButtonPressed(Button.B, function () {
     radio.sendMessage(RadioMessage.Boop)
     music.playTone(262, 500)
 })
-input.onPinPressed(TouchPin.P1, function () {
-    Y = liste_de_textes.length
-    X = 0
-    lcd1602.clear()
-    while (Y != -1) {
-        liste_de_textes.pop()
-        Y += -1
-    }
-})
 function ET () {
     if (letter[0] == 0) {
         basic.showString("E")
@@ -181,7 +172,6 @@ radio.onReceivedMessage(RadioMessage.Boop, function () {
     music.playTone(262, 500)
 })
 let X = 0
-let Y = 0
 let liste_de_textes: string[] = []
 let letter: number[] = []
 letter = []
@@ -192,5 +182,16 @@ lcd1602.I2C_ADDR.addr1
 liste_de_textes = []
 pins.setAudioPin(AnalogPin.P0)
 basic.forever(function () {
-	
+    while (pins.digitalReadPin(DigitalPin.P1) == 0) {
+        while (X != liste_de_textes.length) {
+            lcd1602.putString(
+            liste_de_textes[X],
+            X,
+            0
+            )
+            X += 1
+        }
+        X = 0
+    }
+    control.reset()
 })

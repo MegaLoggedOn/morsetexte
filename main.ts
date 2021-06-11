@@ -182,15 +182,13 @@ lcd1602.setAddress(
 lcd1602.I2C_ADDR.addr1
 )
 basic.forever(function () {
-    while (true) {
-        if (X != liste_de_textes.length) {
-            lcd1602.putString(
-            liste_de_textes[X],
-            X,
-            0
-            )
-            X += 1
-        }
+    while (X != liste_de_textes.length) {
+        lcd1602.putString(
+        liste_de_textes[X],
+        X,
+        0
+        )
+        X += 1
     }
     X = 0
 })

@@ -64,7 +64,6 @@ function AIMN () {
 }
 input.onButtonPressed(Button.A, function () {
     radio.sendMessage(RadioMessage.Beep)
-    music.playTone(262, 200)
 })
 function HV () {
     if (letter[3] == 0) {
@@ -117,9 +116,6 @@ function BCFHJLPQVXYZ () {
         }
     }
 }
-input.onButtonPressed(Button.AB, function () {
-    radio.sendMessage(RadioMessage.SOUND)
-})
 radio.onReceivedMessage(RadioMessage.Beep, function () {
     letter.push(0)
     music.playTone(262, 200)
@@ -136,6 +132,9 @@ radio.onReceivedMessage(RadioMessage.SOUND, function () {
     }
     letter = []
 })
+input.onButtonPressed(Button.AB, function () {
+    radio.sendMessage(RadioMessage.SOUND)
+})
 function BX () {
     if (letter[3] == 0) {
         basic.showString("B")
@@ -147,7 +146,6 @@ function BX () {
 }
 input.onButtonPressed(Button.B, function () {
     radio.sendMessage(RadioMessage.Boop)
-    music.playTone(262, 500)
 })
 function ET () {
     if (letter[0] == 0) {
@@ -171,27 +169,14 @@ radio.onReceivedMessage(RadioMessage.Boop, function () {
     letter.push(1)
     music.playTone(262, 500)
 })
-let X = 0
 let liste_de_textes: string[] = []
 let letter: number[] = []
+radio.setGroup(8)
 letter = []
-radio.setGroup(5)
+liste_de_textes = []
 lcd1602.setAddress(
 lcd1602.I2C_ADDR.addr1
 )
-liste_de_textes = []
-pins.setAudioPin(AnalogPin.P0)
 basic.forever(function () {
-    while (pins.digitalReadPin(DigitalPin.P1) == 0) {
-        while (X != liste_de_textes.length) {
-            lcd1602.putString(
-            liste_de_textes[X],
-            X,
-            0
-            )
-            X += 1
-        }
-        X = 0
-    }
-    control.reset()
+	
 })

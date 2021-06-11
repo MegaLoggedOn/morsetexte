@@ -147,6 +147,9 @@ function BX () {
 input.onButtonPressed(Button.B, function () {
     radio.sendMessage(RadioMessage.Boop)
 })
+input.onPinPressed(TouchPin.P1, function () {
+    control.reset()
+})
 function ET () {
     if (letter[0] == 0) {
         basic.showString("E")
@@ -169,6 +172,7 @@ radio.onReceivedMessage(RadioMessage.Boop, function () {
     letter.push(1)
     music.playTone(262, 500)
 })
+let X = 0
 let liste_de_textes: string[] = []
 let letter: number[] = []
 radio.setGroup(8)
@@ -178,5 +182,13 @@ lcd1602.setAddress(
 lcd1602.I2C_ADDR.addr1
 )
 basic.forever(function () {
-	
+    if (X != liste_de_textes.length) {
+        lcd1602.putString(
+        liste_de_textes[X],
+        X,
+        0
+        )
+        X += 1
+    }
+    X = 0
 })
